@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 const Ball = ({ x, y }) => (
   <div 
-    className="absolute w-6 h-6 rounded-full bg-teal-500"
+    className="absolute w-24 h-24 rounded-full bg-teal-500"
     style={{ left: `${x}px`, top: `${y}px` }}
   />
 );
@@ -12,13 +12,13 @@ const Index = () => {
 
   useEffect(() => {
     const createBall = () => ({
-      x: Math.random() * window.innerWidth,
-      y: Math.random() * window.innerHeight,
-      vx: (Math.random() - 0.5) * 20,
-      vy: (Math.random() - 0.5) * 20,
+      x: Math.random() * (window.innerWidth - 96),
+      y: Math.random() * (window.innerHeight - 96),
+      vx: (Math.random() - 0.5) * 15,
+      vy: (Math.random() - 0.5) * 15,
     });
 
-    setBalls(Array(10).fill().map(createBall));
+    setBalls(Array(7).fill().map(createBall));
 
     const moveBalls = () => {
       setBalls(prevBalls => prevBalls.map(ball => {
@@ -27,8 +27,8 @@ const Index = () => {
         let newVx = ball.vx;
         let newVy = ball.vy;
 
-        if (newX < 0 || newX > window.innerWidth - 24) newVx = -newVx;
-        if (newY < 0 || newY > window.innerHeight - 24) newVy = -newVy;
+        if (newX < 0 || newX > window.innerWidth - 96) newVx = -newVx;
+        if (newY < 0 || newY > window.innerHeight - 96) newVy = -newVy;
 
         return {
           x: newX,
