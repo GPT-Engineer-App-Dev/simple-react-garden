@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 const Ball = ({ x, y }) => (
   <div 
-    className="absolute w-8 h-8 rounded-full bg-pink-500"
+    className="absolute w-6 h-6 rounded-full bg-pink-500"
     style={{ left: `${x}px`, top: `${y}px` }}
   />
 );
@@ -14,11 +14,11 @@ const Index = () => {
     const createBall = () => ({
       x: Math.random() * window.innerWidth,
       y: Math.random() * window.innerHeight,
-      vx: (Math.random() - 0.5) * 10,
-      vy: (Math.random() - 0.5) * 10,
+      vx: (Math.random() - 0.5) * 20, // Increased velocity
+      vy: (Math.random() - 0.5) * 20, // Increased velocity
     });
 
-    setBalls(Array(5).fill().map(createBall));
+    setBalls(Array(10).fill().map(createBall)); // Increased number of balls
 
     const moveBalls = () => {
       setBalls(prevBalls => prevBalls.map(ball => {
@@ -27,8 +27,8 @@ const Index = () => {
         let newVx = ball.vx;
         let newVy = ball.vy;
 
-        if (newX < 0 || newX > window.innerWidth - 32) newVx = -newVx;
-        if (newY < 0 || newY > window.innerHeight - 32) newVy = -newVy;
+        if (newX < 0 || newX > window.innerWidth - 24) newVx = -newVx;
+        if (newY < 0 || newY > window.innerHeight - 24) newVy = -newVy;
 
         return {
           x: newX,
@@ -39,7 +39,7 @@ const Index = () => {
       }));
     };
 
-    const intervalId = setInterval(moveBalls, 50);
+    const intervalId = setInterval(moveBalls, 16); // Increased update frequency (approx. 60 FPS)
 
     return () => clearInterval(intervalId);
   }, []);
