@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 const Ball = ({ x, y }) => (
   <div 
-    className="absolute w-6 h-6 rounded-full bg-pink-500"
+    className="absolute w-6 h-6 rounded-full bg-teal-500"
     style={{ left: `${x}px`, top: `${y}px` }}
   />
 );
@@ -14,11 +14,11 @@ const Index = () => {
     const createBall = () => ({
       x: Math.random() * window.innerWidth,
       y: Math.random() * window.innerHeight,
-      vx: (Math.random() - 0.5) * 20, // Increased velocity
-      vy: (Math.random() - 0.5) * 20, // Increased velocity
+      vx: (Math.random() - 0.5) * 20,
+      vy: (Math.random() - 0.5) * 20,
     });
 
-    setBalls(Array(10).fill().map(createBall)); // Increased number of balls
+    setBalls(Array(10).fill().map(createBall));
 
     const moveBalls = () => {
       setBalls(prevBalls => prevBalls.map(ball => {
@@ -39,7 +39,7 @@ const Index = () => {
       }));
     };
 
-    const intervalId = setInterval(moveBalls, 16); // Increased update frequency (approx. 60 FPS)
+    const intervalId = setInterval(moveBalls, 16);
 
     return () => clearInterval(intervalId);
   }, []);
